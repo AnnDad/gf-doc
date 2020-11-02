@@ -34,10 +34,10 @@ user := g.DB().Table("user")
 user.Where("status IN(?)", g.Slice{1,2,3})
 if vip {
     // 查询条件自动叠加，修改当前模型对象
-    user.Where("money>=?", 1000000)
+    user.And("money>=?", 1000000)
 } else {
     // 查询条件自动叠加，修改当前模型对象
-    user.Where("money<?",  1000000)
+    user.And("money<?",  1000000)
 }
 //  vip: SELECT * FROM user WHERE status IN(1,2,3) AND money >= 1000000
 // !vip: SELECT * FROM user WHERE status IN(1,2,3) AND money < 1000000
